@@ -1,0 +1,38 @@
+.container-login {
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;     
+    text-align: center;
+    margin: auto;
+    border: solid 1px #212529;
+    border-radius: 10px;
+    background-color: #212529;
+    width: 500px;
+    height: 400px;
+    padding: 10px;
+    
+}
+
+.input-username {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.input-value{
+    width: 200px;
+    height: 30px;
+}
+
+.input-password{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.button-login {
+    margin-top: 10px;
+}
+
+
