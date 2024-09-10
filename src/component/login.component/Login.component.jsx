@@ -20,11 +20,10 @@ const Login = () => {
             [name]: value
         })
     }
-    console.log("inputsValue", inputsValue)
     const sendLogin = async () => {
         try {
           const response = await login(inputsValue.userName, inputsValue.password)
-           console.log("good", response) 
+           console.log("good", response)
            navigate('/home')
         } catch (error) {
             console.log("fallo!!")
@@ -33,7 +32,7 @@ const Login = () => {
     }
   return (
     <div>
-        <div style={{marginBottom:'30px'}}><Title /></div>
+        <div style={{marginBottom:'30px'}}><Title title={"Bienvenidos"}/></div>
         <div className='container-login'>
             <div className='input-username'>
                 <Typography variant='h4' color='white'>Username</Typography>

@@ -1,11 +1,12 @@
 import { Typography } from '@mui/material'
 
 
-const Title = () => {
+// eslint-disable-next-line react/prop-types
+const Title = ({title}) => {
   return (
     <div>
          <div style={{textAlign:'center'}}>
-            <Typography variant='h1' color='white'>Bienvenido</Typography>
+            <Typography variant='h1' color='white'>{title}</Typography>
         </div>
     </div>
   )
