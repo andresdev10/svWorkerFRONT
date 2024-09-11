@@ -5,9 +5,12 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Title from "../title/Title"
 import './Home.component.css';
-import { getInfo, sendCategory, getInfoScraping } from '../../services/info/info.js';
+import { getInfo, sendCategory, getInfoScraping, sendUrl } from '../../services/info/info.js';
 import Button from '@mui/material/Button';
 import Swal from 'sweetalert2';
+import AddIcon from '@mui/icons-material/Add';
+import MyModal from '../modal/Modal.jsx';
+
 
 
 const Home = () => {
@@ -16,6 +19,55 @@ const Home = () => {
   const [ infoCategory, setInfoCategory ] = useState([]);
   const [category, setCategory] = useState('');
   const [ dataScraping, setDataScraping ] = useState([]);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+ 
+  const [newData, setNewData] = useState({ urls: [{platform:"", url:"", category:""}]});
+
+  console.log("newData", newData)
+
+  const handelNewData = (e, index) => {
+    const { name, value } = e.target
+   
+    setNewData((prevState) => {
+      const updatedUrls = [...prevState.urls]; // Copia del array actual
+      updatedUrls[index] = { ...updatedUrls[index], [name]: value }; // Actualiza solo el campo correspondiente
+  
+      return { urls: updatedUrls };
+    });
+  }
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const ok = () => {
+    setIsModalVisible(false);
+    setNewData({ urls: [{platform: "", url: "", category: ""}]});
+  }
+
+  const handleSendUrl = async (newData) => {
+    try {
+      await sendUrl(newData)
+      Swal.fire({
+        icon: "success",
+        title:"Guardando Url",
+        text: "Url Agregada!!!",
+        timer: 2000
+      })
+    setNewData({ urls: [{platform: "", url: "", category: ""}]});
+    setIsModalVisible(false);
+    } catch (error) {
+      console.log("error: ", error)
+      Swal.fire({
+        icon: "error",
+        title:"Error",
+        text: "Ocurrio Algo Inesperado",
+        timer: 2000
+      })
+      setNewData({ urls: [{platform: "", url: "", category: ""}]});
+      setIsModalVisible(false);
+    }
+  }
 
   const handleChange = (event) => {
     setPlatform(event.target.value);
@@ -91,7 +143,11 @@ const Home = () => {
   }
   return (
     <div>
-      <div><Title title={"Home"}/></div>
+      <MyModal isModalVisible={isModalVisible} ok={ok}  info={info}  handelNewData={handelNewData} newData={newData} handleSendUrl={handleSendUrl}/>
+      <div className='container-head'>
+      <Title className="title" title={"Home"}/>
+      <Button variant="contained" size="large" startIcon={<AddIcon />} onClick={showModal}>Add URL</Button>
+      </div>
       <div className="container-select">
           <FormControl sx={{ m: 1, minWidth: 220 }} size="small">
           <InputLabel id="demo-select-small-label" style={{fontWeight:'bolder'}}>Red Social</InputLabel>
@@ -155,7 +211,7 @@ const Home = () => {
                       <div className='subContainer-img'>
                       <h1>{row.username}</h1> 
                       <p style={{fontWeight:'bolder', fontSize:'20px'}}>Followers {row.followers}</p>
-                      <img src={row.photo} alt="photo" style={{ width: '100px', height: 'auto' }}/>
+                      {/* <img src={row.photo} alt="photo" style={{ width: '100px', height: 'auto' }}/> */}
                       </div>
                       <div className='subContainer-posts'>
                         <h3>POST</h3>

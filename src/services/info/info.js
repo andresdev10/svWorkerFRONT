@@ -30,3 +30,13 @@ export const getInfoScraping = async (platform, category) => {
         throw error;
     }
 }
+
+export const sendUrl = async (newData) => {
+    try {
+        const res = await axios.post(`${urlApi}/createUrl`, newData )
+        return res
+    } catch (error) {
+        console.log("error", error);
+        throw error;
+    }
+}

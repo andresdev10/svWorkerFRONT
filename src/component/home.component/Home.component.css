@@ -43,3 +43,16 @@
 .subContainer-img {
     margin: 5px;
 }
+
+.container-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Alinea verticalmente los elementos */
+    padding: 10px; /* Opcional, para darle algo de espacio */
+  }
+  
+  .title {
+    text-align: center;
+    flex-grow: 1; /* Esto permite que el título ocupe todo el espacio posible */
+  }
+  

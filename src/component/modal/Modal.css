@@ -1,0 +1,13 @@
+
+.container-modal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Alinea verticalmente los elementos */
+    padding: 10px; /* Opcional, para darle algo de espacio */
+}
+
+.label-modal {
+    font-weight: bold;
+    font-size: 15px;
+    margin: 5px;
+}

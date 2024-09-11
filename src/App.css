@@ -3,7 +3,8 @@ html, body {
   padding: 0;
   height: 100%; /* Asegura que el body tenga la altura completa */
   width: 100%; /* Asegura que el body tenga el ancho completo */
-  box-sizing: border-box; 
+  box-sizing: border-box;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif 
 }
 /* #root {
   box-sizing: border-box;
