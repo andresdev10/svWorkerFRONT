@@ -210,12 +210,20 @@ const Home = () => {
                     <div className='container-posts' key={i}>
                       <div className='subContainer-img'>
                       <h1>{row.username}</h1> 
-                      <p style={{fontWeight:'bolder', fontSize:'20px'}}>Followers {row.followers}</p>
+                      <p style={{fontWeight:'bolder', fontSize:'20px'}}>Followers {row.followers || 0}</p>
                       {/* <img src={row.photo} alt="photo" style={{ width: '100px', height: 'auto' }}/> */}
                       </div>
                       <div className='subContainer-posts'>
                         <h3>POST</h3>
-                        <img src={row.LinkPhotPosts} alt="photo Post" style={{ width: '150px', height: 'auto' }}/>
+                        {/* <img src={row.LinkPhotPosts} alt="photo Post" style={{ width: '150px', height: 'auto' }}/> */}
+                        {row.LinkPhotPosts?.map((url, idx) => (
+                            <img
+                              key={idx}
+                              src={url}
+                              alt={`Photo Post ${idx + 1}`}
+                              style={{ width: '150px', height: 'auto', margin: '5px' }}
+                            />
+                          ))}
                         <span style={{fontWeight:'bolder', fontSize:'25px'}}>{row.contentPost}</span>
                         <p style={{fontWeight:'bolder'}}>{row.date} - {row.time}</p>
                       </div>
