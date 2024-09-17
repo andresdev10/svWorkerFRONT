@@ -205,7 +205,7 @@ const Home = () => {
             dataScraping?.length == 0 ? 
             <h1>Sin Datos Aun!!!</h1> :
             dataScraping?.data?.map((info)=>(
-                info.map((row,i)=>{
+                info?.map((row,i)=>{
                   return (
                     <div className='container-posts' key={i}>
                       <div className='subContainer-img'>
@@ -224,6 +224,18 @@ const Home = () => {
                               style={{ width: '150px', height: 'auto', margin: '5px' }}
                             />
                           ))}
+                          {row.linkVideo?.map((link, i)=>(
+                            <video
+                            key={i}
+                            controls
+                            autoPlay
+                            // alt={`Video ${i + 1}`}
+                            width="400" // Opcional: puedes ajustar el ancho del video
+                            height="300" // Opcional: puedes ajustar la altura del video
+                            >   <source src={link} type="video/mp4" /> </video>
+                          ))
+
+                          }
                         <span style={{fontWeight:'bolder', fontSize:'25px'}}>{row.contentPost}</span>
                         <p style={{fontWeight:'bolder'}}>{row.date} - {row.time}</p>
                       </div>
